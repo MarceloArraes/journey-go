@@ -7,12 +7,12 @@ on:
 
 jobs:
   build-and-push:
-    name: 'Build and Push'
+    name: "Build and Push"
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-    uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Build docker image
-    run: docker build -t marceloarraes31/journey-api:latest .
+      - name: Build docker image
+        run: docker build -t marceloarraes31/journey-api:latest .
