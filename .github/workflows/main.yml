@@ -13,6 +13,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      #gerar tag de acordo com o commit or something
+
+      - name: Generate SHA
+        id: generate_sha
+        run: |
+          SHA=${echo $GITHUB_SHA | head -c7}
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       - name: Build docker image
-        run: docker build -t marceloarraes31/journey-api:latest .
+        run: docker build -t marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} .
+# logar no container registry
+# enviar imagem apos
+# Actions abstract commands and using actions instead of
+# direct commands is a good practice.
+
