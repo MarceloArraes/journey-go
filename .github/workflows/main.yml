@@ -23,8 +23,15 @@ jobs:
 
       - name: Build docker image
         run: docker build -t marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} .
+
+      - name: Login to Docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 # logar no container registry
 # enviar imagem apos
+
 # Actions abstract commands and using actions instead of
 # direct commands is a good practice.
 
