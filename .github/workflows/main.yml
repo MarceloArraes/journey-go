@@ -22,8 +22,8 @@ jobs:
 
       # because of setup go i have access of running the Go commands
       #
-      # - name: Run test
-      #   run: go test
+      - name: Run test
+        run: go test
 
       - name: Generate SHA
         id: generate_sha
