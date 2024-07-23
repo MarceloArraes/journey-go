@@ -27,14 +27,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build docker image
-        run: docker build -t marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} .
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: |
+            marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}}
+            marceloarraes31/journey-api:latest
 
-      - name: Push image
-        run: |
-          docker push marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}}
-          docker tag marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} marceloarraes31/journey-api:latest
-          docker push marceloarraes31/journey-api:latest
+      # - name: Build docker image
+      #   run: docker build -t marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} .
+
+      # - name: Push image
+      #   run: |
+      #     docker push marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}}
+      #     docker tag marceloarraes31/journey-api:${{steps.generate_sha.outputs.sha}} marceloarraes31/journey-api:latest
+      #     docker push marceloarraes31/journey-api:latest
 
 # logar no container registry
 # enviar imagem apos
